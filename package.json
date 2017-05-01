@@ -1,0 +1,27 @@
+{
+  "name": "bookshelf",
+  "version": "1.0.0",
+  "description": "readingApp",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon",
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bethstevic/bookshelf.git"
+  },
+  "author": "Beth Stevic",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bethstevic/bookshelf/issues"
+  },
+  "homepage": "https://github.com/bethstevic/bookshelf#readme",
+  "dependencies": {
+    "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor",
+    "express": "^4.15.2",
+    "mongod": "^2.0.0",
+    "mongoose": "^4.9.7",
+    "nodemon": "^1.11.0"
+  }
+}
