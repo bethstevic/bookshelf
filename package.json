@@ -2,7 +2,6 @@
   "name": "bookshelf",
   "version": "1.0.0",
   "description": "readingApp",
-  "main": "index.js",
   "scripts": {
     "start": "nodemon",
     "test": "test"
