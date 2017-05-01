@@ -18,6 +18,8 @@
   },
   "homepage": "https://github.com/bethstevic/bookshelf#readme",
   "dependencies": {
+    "angular": "^1.6.4",
+    "angular-mocks": "^1.6.4",
     "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor",
     "express": "^4.15.2",
     "mongod": "^2.0.0",
