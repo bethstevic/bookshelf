@@ -1,2 +1,5 @@
 # bookshelf
-A way to keep track of reading goals
+
+
+This app will be a way to keep track of the books you want to read
+
