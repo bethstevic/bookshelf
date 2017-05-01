@@ -23,4 +23,4 @@ var BookSchema = new Schema ({
 
 var Book = mongoose.model('Books', BookSchema);
 
-module.exports = db;
+module.exports = Book;
