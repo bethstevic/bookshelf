@@ -1,47 +1,71 @@
 angular.module('book-list', [])
 .controller('ToRead', function($scope, $http) {
-  // var toReadList = this;
   $scope.toReadList = [];
 
-  $scope.toReadList.addBook = () => {
-    //console.log('hello');
-    console.log($scope.toReadList.bookTitle, 'book title');
-    $scope.toReadList.push({
-      title: $scope.toReadList.bookTitle,
-      id: 3
+  $http({
+    method: 'GET',
+    url: '/books'
+  })
+  .success(function(data) {
+    console.log('post successful');
+    data.forEach(function(bookObj) {
+      $scope.toReadList.push({
+        title: bookObj.title,
+        author: bookObj.author
+      });
     });
-    this.newBook = '';
+  })
+  .error(function(data, status) {
+    console.log(status, 'error on get');
+  });
+
+  $scope.toReadList.addBook = () => {
    $http({
     method: 'POST',
     url: '/books',
-    data: JSON.stringify({title: $scope.toReadList.bookTitle})
-  });
+    data: JSON.stringify({
+      title: $scope.toReadList.bookTitle,
+      author: $scope.toReadList.bookAuthor})
+  })
+   .success(function(data) {
+    console.log(data);
+    console.log('post successful');
+      $scope.toReadList.push({
+      title: data.title,
+      author: data.author
+    });
+  })
+   .error(function(data, status) {
+    console.log(status, data, 'error on post');
+   });
+  //$scope.read.$setPristine();
 };
 
-  // $http.post({
-  //   url: '/books',
-  //   params: {title: toReadList.books.title}
-  //  })
-  //  .then(function(res, req) {
-  //   $scope.content = req.data;
-  //  }, function (res, req) {
-  //   $scope.content = 'Something went wrong';
-  //  });
-
-   // $http.get({
-   //  url: '/books',
-   //  params: {title: toReadList.books.title}
-   // })
-   // .then(function (res, req) {
-   //    $scope.content = res.data;
-   // }, function (res) {
-   //  $scope.content = 'Something went wrong';
-   // });
+  $scope.toReadList.deleteBook = () => {
+    console.log($scope.toReadList);
+    $http({
+      method: 'DELETE',
+      url: '/books',
+      data: JSON.stringify({
+        title: $scope.toReadList.bookTitle,
+        author: $scope.toReadList.bookAuthor})
+    })
+    .success(function(data) {
+      console.log('delete successful');
+      $scope.toReadList.remove({
+      title: data.title,
+      author: data.author
+      });
+    })
+    .error(function(data, status) {
+      console.log(status, 'error on delete');
+    });
+  };
 
 
 })
 .directive('eachBook', function() {
   return {
-    template: 'Title: {{book.title}} Id: {{book.id}}'
+    template: 'Title: {{book.title}} Author: {{book.author}}'
   };
 });

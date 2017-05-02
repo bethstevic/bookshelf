@@ -12,14 +12,15 @@
     <h1>Bookshelf</h1>
     <div ng-controller="ToRead">
       <div>
-        <form>
-          <input ng-model="toReadList.bookTitle">
-          <button class="btn" type="submit" ng-click="toReadList.addBook()">Add a book
+        <form ng-id="read">
+          <input type="title" ng-model="toReadList.bookTitle" placeholder="Enter Title">
+          <input type="author" ng-model="toReadList.bookAuthor" placeholder="Enter Author">
+          <button class="btn" type="submit" ng-click="toReadList.addBook()">Add book
           </button>
-        </form>
+        </form >
       </div>
       <h3>Books To Read</h3>
-      <div ng-repeat="book in toReadList">
+      <div ng-model="toReadList.book" ng-repeat="book in toReadList" ng-click="toReadList.deleteBook()">
         <div each-book>
         </div>
       </div>

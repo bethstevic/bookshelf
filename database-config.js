@@ -18,9 +18,13 @@ var BookSchema = new Schema ({
   title: {
     type: String,
     Required: true
+  },
+  author: {
+    type: String,
+    Required: false
   }
 });
 
-var Book = mongoose.model('Books', BookSchema);
+var Book = mongoose.model('Book', BookSchema);
 
 module.exports = Book;

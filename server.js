@@ -3,7 +3,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 
-var db = require('./database-config');
+var Book = require('./database-config');
 
 var port = 8989;
 
@@ -15,20 +15,49 @@ app.use(bodyParser.json());
 //app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + '/public'));
 
+app.get('/books', function(req, res) {
+  Book.find().exec(function(err, books) {
+    if(err) {
+      console.log(err);
+    } else {
+      console.log('get succesful');
+      res.status(200).send(books);
+    }
+  });
+})
 
-
-// app.get('/books', function(req, res) {
-//   //find().then
-//   res.send(req.body);
-// });
 
 
 app.post('/books', function(req, res) {
-  //findOne
-  console.log(req.body);
-  res.send('post successful');
+  var newBook = new Book ({
+    title: req.body.title,
+    author: req.body.author,
+  });
+  newBook.save(function(err, newBook) {
+    if(err) {
+      res.status(500).send(err, 'error on server side post');
+    } else {
+      res.status(200).send(newBook);
+    }
+  });
 });
 
+app.delete('/books', function(req, res) {
+  console.log(req.body);
+ bookTable.findOne({
+      title: req.body.title
+    }, function(err, found) {
+      if(found) {
+        console.log('delete successful');
+        res.status(200).send(found);
+      } else {
+        res.status(404).send('book not found');
+      } if(err) {
+        console.log(err, 'error on delete server side');
+        res.status(500).send(err);
+      }
+    });
+});
 
 
 
