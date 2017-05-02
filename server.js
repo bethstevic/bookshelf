@@ -17,12 +17,17 @@ app.use(express.static(__dirname + '/public'));
 
 
 
-app.get('/', function(req, res) {
-  res.send('get successful');
+// app.get('/books', function(req, res) {
+//   //find().then
+//   res.send(req.body);
+// });
+
+
+app.post('/books', function(req, res) {
+  //findOne
+  console.log(req.body);
+  res.send('post successful');
 });
-
-
-
 
 
 

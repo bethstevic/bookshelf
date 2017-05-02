@@ -1,30 +1,47 @@
 angular.module('book-list', [])
 .controller('ToRead', function($scope, $http) {
-  $scope.booksToRead = [
-    {title: 'test book', id: 1},
-    {title: 'test book 2', id: 2}
-  ];
+  // var toReadList = this;
+  $scope.toReadList = [];
 
-  $scope.updateToRead = (newBook) => {
-    console.log(newBook);
-  //   booksToRead.insert({
-  //     title: newBook,
-  //     id: 3
-  //   });
-  //   this.newBook = '';
-   };
+  $scope.toReadList.addBook = () => {
+    //console.log('hello');
+    console.log($scope.toReadList.bookTitle, 'book title');
+    $scope.toReadList.push({
+      title: $scope.toReadList.bookTitle,
+      id: 3
+    });
+    this.newBook = '';
+   $http({
+    method: 'POST',
+    url: '/books',
+    data: JSON.stringify({title: $scope.toReadList.bookTitle})
+  });
+};
 
-   $http.get('something_not_sure_yet')
-   .then(function (res) {
-      $scope.content = res.data;
-   }, function (res) {
-    $scope.content = 'Something went wrong';
-   });
+  // $http.post({
+  //   url: '/books',
+  //   params: {title: toReadList.books.title}
+  //  })
+  //  .then(function(res, req) {
+  //   $scope.content = req.data;
+  //  }, function (res, req) {
+  //   $scope.content = 'Something went wrong';
+  //  });
+
+   // $http.get({
+   //  url: '/books',
+   //  params: {title: toReadList.books.title}
+   // })
+   // .then(function (res, req) {
+   //    $scope.content = res.data;
+   // }, function (res) {
+   //  $scope.content = 'Something went wrong';
+   // });
+
 
 })
 .directive('eachBook', function() {
   return {
-
     template: 'Title: {{book.title}} Id: {{book.id}}'
   };
 });

@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Bookshelf</title>
-  <link rel="stylesheet" href="style.css">
+<!--   <link rel="stylesheet" src="style.css"> -->
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.js"></script>
 </head>
 <body>
@@ -12,14 +12,14 @@
     <h1>Bookshelf</h1>
     <div ng-controller="ToRead">
       <div>
-        <form class =class="new-book" ng-submit="ctrl.updateToRead(ctrl.newBook)">
-          <input ng-model="book.title">
-          <button class="btn" ng-click="updateToRead()">Add a book
+        <form>
+          <input ng-model="toReadList.bookTitle">
+          <button class="btn" type="submit" ng-click="toReadList.addBook()">Add a book
           </button>
         </form>
       </div>
       <h3>Books To Read</h3>
-      <div ng-repeat="book in booksToRead">
+      <div ng-repeat="book in toReadList">
         <div each-book>
         </div>
       </div>
