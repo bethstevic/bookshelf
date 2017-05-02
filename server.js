@@ -20,11 +20,11 @@ app.get('/books', function(req, res) {
     if(err) {
       console.log(err);
     } else {
-      console.log('get succesful');
+      console.log('get successful');
       res.status(200).send(books);
     }
   });
-})
+});
 
 
 
@@ -42,11 +42,10 @@ app.post('/books', function(req, res) {
   });
 });
 
-app.delete('/books', function(req, res) {
-  console.log(req.body);
- bookTable.findOne({
-      title: req.body.title
-    }, function(err, found) {
+app.put('/books', function(req, res) {
+  console.log('put request');
+  Book.findOneAndRemove({id: req.body.title})
+    .exec(function(err, found) {
       if(found) {
         console.log('delete successful');
         res.status(200).send(found);

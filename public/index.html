@@ -20,8 +20,9 @@
         </form >
       </div>
       <h3>Books To Read</h3>
-      <div ng-model="toReadList.book" ng-repeat="book in toReadList" ng-click="toReadList.deleteBook()">
-        <div each-book>
+      <div ng-model="toReadList.book"
+       ng-repeat="book in toReadList">
+        <div each-book ng-click="toReadList.deleteBook(book)">
         </div>
       </div>
     </div>

@@ -41,21 +41,15 @@ angular.module('book-list', [])
   //$scope.read.$setPristine();
 };
 
-  $scope.toReadList.deleteBook = () => {
-    console.log($scope.toReadList);
+  $scope.toReadList.deleteBook = (b) => {
+    console.dir(b);
     $http({
-      method: 'DELETE',
+      method: 'PUT',
       url: '/books',
-      data: JSON.stringify({
-        title: $scope.toReadList.bookTitle,
-        author: $scope.toReadList.bookAuthor})
     })
     .success(function(data) {
       console.log('delete successful');
-      $scope.toReadList.remove({
-      title: data.title,
-      author: data.author
-      });
+      $scope.toReadList.splice(b, 1);
     })
     .error(function(data, status) {
       console.log(status, 'error on delete');
@@ -69,3 +63,19 @@ angular.module('book-list', [])
     template: 'Title: {{book.title}} Author: {{book.author}}'
   };
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
