@@ -10,12 +10,14 @@
 <body>
   <app ng-app="book-list">
     <h1>Bookshelf</h1>
-    <div>
-      <input class="form-control" ng-model="ctrl.input">
-      <button class="btn" ng-click="ctrl.inputResults">Add a book
-      </button>
-    </div>
     <div ng-controller="ToRead">
+      <div>
+        <form class =class="new-book" ng-submit="ctrl.updateToRead(ctrl.newBook)">
+          <input ng-model="book.title">
+          <button class="btn" ng-click="updateToRead()">Add a book
+          </button>
+        </form>
+      </div>
       <h3>Books To Read</h3>
       <div ng-repeat="book in booksToRead">
         <div each-book>
