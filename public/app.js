@@ -9,4 +9,9 @@ angular.module('book-list', [])
     booksToRead.push(data);
   };
 
+})
+.directive('eachBook', function() {
+  return {
+    template: 'Title: {{book.title}} Id: {{book.id}}'
+  };
 });
