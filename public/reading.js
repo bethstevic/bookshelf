@@ -1,15 +1,15 @@
 angular.module('book-list', [])
-.controller('ToRead', function($scope, $http) {
-  $scope.toReadList = [];
+.controller('CurrentBookList', function($scope, $http) {
+  $scope.readingList = [];
 
   $http({
     method: 'GET',
-    url: '/books'
+    url: '/current'
   })
   .success(function(data) {
     console.log('post successful');
     data.forEach(function(bookObj) {
-      $scope.toReadList.push({
+      $scope.readingList.push({
         title: bookObj.title,
         author: bookObj.author
       });
@@ -19,21 +19,20 @@ angular.module('book-list', [])
     console.log(status, 'error on get');
   });
 
-  $scope.toReadList.addBook = () => {
-    console.log($scope.toReadList);
+  $scope.readingList.readBook = () => {
    $http({
     method: 'POST',
-    url: '/books',
+    url: '/current',
     data: JSON.stringify({
-      title: $scope.toReadList.bookTitle,
-      author: $scope.toReadList.bookAuthor})
+      title: $scope.readingList.bookTitle,
+      author: $scope.readingList.bookAuthor})
   })
    .success(function(data) {
     console.log(data);
     console.log('post successful');
-      $scope.toReadList.push({
+      $scope.readingList.push({
       title: data.title,
-      author: data.author
+      author: data.author,
     });
   })
    .error(function(data, status) {
@@ -42,17 +41,17 @@ angular.module('book-list', [])
   //$scope.read.$setPristine();
 };
 
-  $scope.toReadList.deleteBook = (b) => {
-    console.dir(b);
+  $scope.readingList.removeBook = (c) => {
+    console.dir(c);
     $http({
       method: 'PUT',
-      url: '/books',
+      url: '/current',
       data: JSON.stringify({
-        title: b.title,
-        author: b.author})
+        title: c.title,
+        author: c.author})
     })
     .success(function(data) {
-      var index = $scope.toReadList.indexOf(b);
+      var index = $scope.toReadList.indexOf(c);
       console.log(index);
       $scope.toReadList.splice(index, 1);
       console.log('delete successful');
@@ -64,24 +63,8 @@ angular.module('book-list', [])
 
 
 })
-.directive('eachBook', function() {
+.directive('currentBook', function() {
   return {
     template: 'Title: {{book.title}} Author: {{book.author}}'
   };
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

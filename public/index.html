@@ -10,7 +10,8 @@
 <body>
   <app ng-app="book-list">
     <h1>Bookshelf</h1>
-    <div ng-controller="ToRead">
+    <!-- To Read List -->
+    <div ng-controller="ToRead" id="toRead">
       <div>
         <form ng-id="read">
           <input type="title" ng-model="toReadList.bookTitle" placeholder="Enter Title">
@@ -26,7 +27,25 @@
         </div>
       </div>
     </div>
+    <!-- current reading list -->
+<!--     <div ng-controller="CurrentBookList" id="current">
+      <div>
+        <form ng-id="reading">
+          <input type="title" ng-model="readingList.bookTitle" placeholder="Enter Title">
+          <input type="author" ng-model="readingList.bookAuthor" placeholder="Enter Author">
+          <button class="btn" type="submit" ng-click="readingList.readBook()">Add book
+          </button>
+        </form >
+      </div>
+      <h3>Currently Reading</h3>
+      <div ng-model="readingList.book"
+       ng-repeat="book in readingList">
+        <div current-book ng-click="readingList.removeBook(book)">
+        </div>
+      </div>
+    </div> -->
   </app>
 <script src="app.js"></script>
+<!-- <script src="reading.js"></script> -->
 </body>
 </html>
